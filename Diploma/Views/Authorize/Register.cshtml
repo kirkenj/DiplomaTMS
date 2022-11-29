@@ -1,0 +1,46 @@
+﻿@model Diploma.Models.Comands.Register.RegisterUserModel;
+
+@{
+    ViewBag.Title = "Register";
+}
+
+<h2>Create user</h2>
+<form action="/Authorize/Register" method="post">
+    <div>
+        @Html.LabelFor(Model => Model.Name)
+    </div>
+    <div>
+        @Html.TextBoxFor(Model => Model.Name)
+    </div>
+    <div>
+        @Html.LabelFor(Model => Model.Surname)
+    </div>
+    <div>
+        @Html.TextBoxFor(Model => Model.Surname)
+    </div>
+    <div>
+        @Html.LabelFor(Model => Model.Patronymic)
+    </div>
+    <div>
+        @Html.TextBoxFor(Model => Model.Patronymic)
+    </div>
+    <div>
+        @Html.LabelFor(Model => Model.Login)
+    </div>
+    <div>
+        @Html.TextBoxFor(Model => Model.Login)
+    </div>
+    <div>
+        @Html.LabelFor(Model => Model.PasswordStr)
+    </div>
+    <div>
+        @Html.TextBoxFor(Model => Model.PasswordStr)
+    </div>
+        <div>
+        @Html.LabelFor(Model => Model.ConfirmPasswordStr)
+    </div>
+    <div>
+        @Html.TextBoxFor(Model => Model.ConfirmPasswordStr)
+    </div>
+    <input type="submit" value="Register" />
+</form>

@@ -1,18 +1,31 @@
 using Database;
+using Database.Entities;
 using Database.Interfaces;
+using Diploma.Models;
+using Diploma.Models.Interfaces;
+using Diploma.Models.Middlewares;
+using Diploma.Models.Services;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddTransient<IAppDBContext, AppDbContext>();
+builder.Services.AddTransient<IAccountService, AccountService>();
+
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options => options.LoginPath = "/login");
+builder.Services.AddAuthorization();
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-builder.Services.AddTransient<AppDbContext, IAppDbContext>();
-
-
-
 var app = builder.Build();
+
+app.UseAuthentication();
+app.UseAuthorization();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -22,6 +35,9 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+app.UseMiddleware<ExceptionMiddleware>();
+
+//app.UseMiddleware<AuthMiddleware>();
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 

@@ -1,5 +1,5 @@
 ﻿using Database.Entities;
-using Diploma.Models.Interfaces;
+using Database.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace Database
@@ -10,6 +10,17 @@ namespace Database
         public virtual DbSet<Role> Roles { get; set; } = null!;
         public virtual DbSet<User> Users { get; set; } = null!;
         public virtual DbSet<Contract> MonthReports { get; set; } = null!;
+
+        public AppDbContext()
+        {
+
+        }
+
+        public AppDbContext(DbContextOptions<AppDbContext> options)
+            : base(options)
+        {
+            Database.EnsureCreated();
+        }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

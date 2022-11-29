@@ -21,6 +21,8 @@ builder.Services.Configure<JWTSettings>(builder.Configuration.GetSection("JWTSet
 //    options.AddPolicy("OnlyIT", policyBuilder => policyBuilder.RequireAssertion());
 //});
 
+
+
 var secretKey = builder.Configuration.GetSection("JWTSettings:SecretKey").Value;
 var issuer = builder.Configuration.GetSection("JWTSettings:Issuer").Value;
 var audience = builder.Configuration.GetSection("JWTSettings:Audience").Value;

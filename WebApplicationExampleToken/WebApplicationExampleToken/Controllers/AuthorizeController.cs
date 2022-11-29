@@ -68,9 +68,7 @@ namespace WebApplicationExampleToken.Controllers
                   signingCredentials: new SigningCredentials(signinKey, SecurityAlgorithms.HmacSha256)
               );
 
-            var tokenStr = new JwtSecurityTokenHandler().WriteToken(jwt);
-            Request.Headers.Append("JWT", tokenStr);
-            return tokenStr;
+            return new JwtSecurityTokenHandler().WriteToken(jwt);
         }
 
         [HttpPost("SignIn")]

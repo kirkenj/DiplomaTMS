@@ -1,0 +1,14 @@
+﻿@model Diploma.Models.Queries.Login.LoginUserModel;
+
+@{
+    ViewBag.Title = "Login";
+}
+
+<h2>Log in</h2>
+<form action="/Authorize/Login" method="post">
+    <div>@Html.LabelFor(Model => Model.Login)</div>
+    <div>@Html.TextBoxFor(Model => Model.Login)</div>
+    <div>@Html.LabelFor(Model => Model.PasswordStr)</div>
+    <div>@Html.PasswordFor(Model => Model.PasswordStr)</div>
+    <input type="submit" value="Login" />
+</form>
