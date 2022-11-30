@@ -14,7 +14,7 @@
         <th>@Html.LabelFor(model=>model.First().Name)</th>
         <th>@Html.LabelFor(model=>model.First().Surname)</th>
         <th>@Html.LabelFor(model=>model.First().Patronymic)</th>
-        @if (User.Claims.Any(r => r.Type == "RoleID" && r.Value == "3"))
+        @if (userRoleID == 3)
         {
             <th>Set Role</th>
         }

@@ -28,6 +28,17 @@
                             }
                             <a class="nav-link text-dark" asp-area="" asp-controller=@accControllerName asp-action="MyAccount">@accControllerName</a>
                         </li>
+                        <li class="nav-item">
+                            @{
+                                var depControllerName = nameof(Diploma.Controllers.DepartmentsController).Replace("Controller", string.Empty);
+                            }
+                            <a class="nav-link text-dark" asp-area="" asp-controller=@depControllerName asp-action="Index">@depControllerName</a>
+                        </li>
+
+
+
+
+
                         @{
                             if (User is null || User.Identity is null || !User.Identity.IsAuthenticated)
                             {

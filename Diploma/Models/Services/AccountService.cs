@@ -1,9 +1,11 @@
-﻿using Database.Entities;
+﻿using Database;
+using Database.Entities;
 using Database.Interfaces;
 using Diploma.Models.Comands.Register;
 using Diploma.Models.Interfaces;
 using Diploma.Models.Queries.Login;
 using Microsoft.EntityFrameworkCore;
+using NuGet.Protocol.Plugins;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -37,6 +39,37 @@ namespace Diploma.Models.Services
             _context.Users.Add(userEntity);
             await _context.SaveChangesAsync();
             return (true, $"User {userEntity.Login} created");
+        }
+
+        public async Task<Role> GetRoleByID(int id)
+        {
+            return await _context.Roles.FirstAsync(u => u.ID== id);
+        }
+
+        public async Task<User> GetUserByID(int id)
+        {
+            return await _context.Users.Include(y => y.Role).FirstAsync(u => u.ID == id);
+        }
+
+        public async Task<User> GetUserByLogin(string Login)
+        {
+            return await _context.Users.Include(y => y.Role).FirstAsync(u => u.Login == Login);
+        }
+
+        public List<UserViewModel> GetUserViewModelsList()
+        {
+            return _context.Users.Include(y => y.Role).Select(u => new UserViewModel(u)).ToList();
+        }
+
+        public async Task SetRole(int userId, int roleId)
+        {
+            var role = await _context.Roles.FirstOrDefaultAsync(r => r.ID == roleId);
+            var user = await _context.Users.FirstOrDefaultAsync(r => r.ID == userId);
+            if (role != null && user != null)
+            {
+                user.RoleId = role.ID;
+                await _context.SaveChangesAsync();
+            }
         }
 
         public async Task<UserViewModel?> SignInAsync(LoginUserModel loginUserModel)

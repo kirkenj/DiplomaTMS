@@ -1,0 +1,43 @@
+﻿@using Database.Entities;
+@using Diploma.Models
+@using System.Security.Claims;
+@model List<Department> 
+
+@{
+    ViewData["Title"] = "Accounts list";
+    int userRoleID = int.Parse(User.Claims.FirstOrDefault(c => c.Type == "RoleID")?.Value ?? "2");
+    bool isAdminView = userRoleID == 3 || userRoleID == 1;
+}
+@if (isAdminView)
+{
+    @Html.ActionLink("Create", "Create");
+}
+<table>
+    <tr>
+        <th>@Html.LabelFor(model=>model.First().ID)</th>
+        <th>@Html.LabelFor(model=>model.First().Name)</th>
+        @if (isAdminView)
+        {
+            <th>Edit</th>
+        }
+    </tr>
+    @{
+        var list = Model.ToArray();
+    }
+    @for (int i = 0; i < list.Length; i++)
+    { 
+        var m = list[i];
+        <tr>
+            <td>@m.ID</td>
+            <td>@m.Name</td>
+            <td>@if (isAdminView)
+                    @Html.ActionLink("Edit", "Edit", "Departments", new { ID = m.ID }, null)
+            </td>
+            <td>@if (userRoleID == 3)
+                    @Html.ActionLink("Delete", "Delete", "Departments", new { ID = m.ID }, null)
+            </td>
+            
+        </tr>
+    }
+</table>
+

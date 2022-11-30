@@ -1,0 +1,12 @@
+﻿@model Database.Entities.Department;
+
+@{
+    ViewData["Title"] = "Create department";
+}
+
+<h2>Create department</h2>
+<form action="/Departments/Create" method="post">
+    <div>@Html.LabelFor(Model => Model.Name)</div>
+    <div>@Html.TextBoxFor(Model => Model.Name)</div>
+    <input type="submit" value="Create" />
+</form>

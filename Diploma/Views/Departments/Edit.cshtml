@@ -1,0 +1,14 @@
+﻿@model Database.Entities.Department;
+
+@{
+    ViewData["Title"] = "Edit department";
+}
+
+<h2>Edit department</h2>
+<form action="/Departments/Edit" method="post">
+    <div>@Html.LabelFor(Model => Model.ID)</div>
+    <div>@Html.HiddenFor(Model => Model.ID)</div>
+    <div>@Html.LabelFor(Model => Model.Name)</div>
+    <div>@Html.TextBoxFor(Model => Model.Name)</div>
+    <input type="submit" value="Edit" />
+</form>

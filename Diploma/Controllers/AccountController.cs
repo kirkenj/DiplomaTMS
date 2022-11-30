@@ -4,43 +4,37 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using Diploma.Models.Interfaces;
 
 namespace Diploma.Controllers
 {
     [Authorize]
     public class AccountController : Controller
     {
-        private readonly IAppDBContext _appDBContext = null!;
+        private readonly IAccountService _accountService = null!;
 
-        public AccountController(IAppDBContext appDBContext1)
+        public AccountController(IAccountService appDBContext1)
         {
-            _appDBContext = appDBContext1;
+            _accountService = appDBContext1;
         }
 
         public async Task<IActionResult> MyAccount()
         {
             var login = User.Identity?.Name ?? throw new ArgumentNullException();
-            return View(new UserViewModel(await _appDBContext.Users.Include(y => y.Role).FirstAsync(u => u.Login == login)));
+            return View(new UserViewModel(await _accountService.GetUserByLogin(login)));
         }
 
         [Authorize("OnlyAdmin")]
         public IActionResult List()
         {
-            var views = _appDBContext.Users.Include(y => y.Role).Select(u=>new UserViewModel(u)).ToList();
+            var views = _accountService.GetUserViewModelsList();
             return View(views);
         }
 
         [Authorize("OnlyAdmin")]
         public async Task<IActionResult> SetRole(int userId, int RoleID)
         { 
-            var role = await _appDBContext.Roles.FirstOrDefaultAsync(r => r.ID == RoleID);
-            var user = await _appDBContext.Users.FirstOrDefaultAsync(r => r.ID == userId);
-            if (role != null && user!=null) 
-            {
-                user.RoleId= role.ID;
-                await _appDBContext.SaveChangesAsync();
-            }
-            
+            await _accountService.SetRole(userId, RoleID);
             return RedirectToAction("List");
         }
     }
