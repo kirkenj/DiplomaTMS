@@ -57,9 +57,9 @@ namespace Database.Entities
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
-            if (PeriodStart < PeriodEnd)
+            if (PeriodStart > PeriodEnd)
             {
-                yield return new ValidationResult($"PeriodStart < PeriodEnd");
+                yield return new ValidationResult($"PeriodStart > PeriodEnd");
             }
 
             if (TimeSum < 0)
