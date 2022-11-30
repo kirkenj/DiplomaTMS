@@ -34,6 +34,12 @@
                             }
                             <a class="nav-link text-dark" asp-area="" asp-controller=@depControllerName asp-action="Index">@depControllerName</a>
                         </li>
+                        <li class="nav-item">
+                            @{
+                                var conControllerName = nameof(Diploma.Controllers.ContractsController).Replace("Controller", string.Empty);
+                            }
+                            <a class="nav-link text-dark" asp-area="" asp-controller=@conControllerName asp-action="Index">@conControllerName</a>
+                        </li>
 
 
 

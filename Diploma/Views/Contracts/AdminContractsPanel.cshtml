@@ -1,0 +1,69 @@
+﻿@model List<Database.Entities.Contract>;
+
+@{
+    ViewData["Title"] = "User's contracts";
+}
+
+<table>
+    <tr>
+        <td>Confirm</td>
+        <td>@Html.LabelFor(Model => Model.First().User.Name)</td>
+        <td>@Html.LabelFor(Model => Model.First().IsConfirmed)</td>
+        <td>@Html.LabelFor(Model => Model.First().TimeSum)</td>
+        <td>@Html.LabelFor(Model => Model.First().Department)</td>
+        <td>@Html.LabelFor(Model => Model.First().PeriodStart)</td>
+        <td>@Html.LabelFor(Model => Model.First().PeriodEnd)</td>
+        <td>@Html.LabelFor(Model => Model.First().LectionsMaxTime)</td>
+        <td>@Html.LabelFor(Model => Model.First().PracticalClassesMaxTime)</td>
+        <td>@Html.LabelFor(Model => Model.First().LaboratoryClassesMaxTime)</td>
+        <td>@Html.LabelFor(Model => Model.First().ConsultationsMaxTime)</td>
+        <td>@Html.LabelFor(Model => Model.First().OtherTeachingClassesMaxTime)</td>
+        <td>@Html.LabelFor(Model => Model.First().CreditsMaxTime)</td>
+        <td>@Html.LabelFor(Model => Model.First().ExamsMaxTime)</td>
+        <td>@Html.LabelFor(Model => Model.First().CourseProjectsMaxTime)</td>
+        <td>@Html.LabelFor(Model => Model.First().InterviewsMaxTime)</td>
+        <td>@Html.LabelFor(Model => Model.First().TestsAndReferatsMaxTime)</td>
+        <td>@Html.LabelFor(Model => Model.First().InternshipsMaxTime)</td>
+        <td>@Html.LabelFor(Model => Model.First().DiplomasMaxTime)</td>
+        <td>@Html.LabelFor(Model => Model.First().DiplomasReviewsMaxTime)</td>
+        <td>@Html.LabelFor(Model => Model.First().SECMaxTime)</td>
+        <td>@Html.LabelFor(Model => Model.First().GraduatesManagementMaxTime)</td>
+        <td>@Html.LabelFor(Model => Model.First().GraduatesAcademicWorkMaxTime)</td>
+        <td>@Html.LabelFor(Model => Model.First().PlasticPosesDemonstrationMaxTime)</td>
+        <td>@Html.LabelFor(Model => Model.First().TestingEscortMaxTime)</td>
+    </tr>
+    
+    @{
+        for(int i = 0; i < Model.Count(); i++)
+        {
+            var m = Model[i];
+            <tr>
+            <td>@Html.ActionLink("Confirm", "Confirm", new {contractID = m.ID})</td>
+            <td>@m.User.Name</td>
+            <td>@m.IsConfirmed</td>
+            <td>@m.TimeSum</td>
+            <td>@m.Department.Name</td>
+            <td>@m.PeriodStart</td>
+            <td>@m.PeriodEnd</td>
+            <td>@m.LectionsMaxTime</td>
+            <td>@m.PracticalClassesMaxTime</td>
+            <td>@m.LaboratoryClassesMaxTime</td>
+            <td>@m.ConsultationsMaxTime</td>
+            <td>@m.OtherTeachingClassesMaxTime</td>
+            <td>@m.CreditsMaxTime</td>
+            <td>@m.ExamsMaxTime</td>
+            <td>@m.CourseProjectsMaxTime</td>
+            <td>@m.InterviewsMaxTime</td>
+            <td>@m.TestsAndReferatsMaxTime</td>
+            <td>@m.InternshipsMaxTime</td>
+            <td>@m.DiplomasMaxTime</td>
+            <td>@m.DiplomasReviewsMaxTime</td>
+            <td>@m.SECMaxTime</td>
+            <td>@m.GraduatesManagementMaxTime</td>
+            <td>@m.GraduatesAcademicWorkMaxTime</td>
+            <td>@m.PlasticPosesDemonstrationMaxTime</td>
+            <td>@m.TestingEscortMaxTime</td>
+            </tr>
+        }
+    }
+</table>

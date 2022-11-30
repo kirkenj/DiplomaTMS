@@ -1,6 +1,4 @@
 ﻿using Database.Entities;
-using Diploma.Models.Comands.Register;
-using Diploma.Models.Queries.Login;
 using System.Security.Claims;
 
 namespace Diploma.Models.Interfaces

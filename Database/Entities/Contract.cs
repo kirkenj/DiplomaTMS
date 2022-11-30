@@ -10,28 +10,28 @@ namespace Database.Entities
         public int UserID { get; set; }
         public int DepartmentID { get; set; }
         public Department Department { get; set; } = null!;
-        public DateTime PeriodStart { get; set; }
-        public DateTime PeriodEnd { get; set; }
+        public DateTime PeriodStart { get; set; } = DateTime.Now;
+        public DateTime PeriodEnd { get; set; } = DateTime.Now.AddMonths(1);
         public bool IsConfirmed { get; set; } = false;
         public IEnumerable<MonthReport> MonthReports { get; set; } = null!;
-        public int LectionsMaxTime { get; set; }
-        public int PracticalClassesMaxTime { get; set; }
-        public int LaboratoryClassesMaxTime { get; set; }
-        public int ConsultationsMaxTime { get; set; }
-        public int OtherTeachingClassesMaxTime { get; set; }
-        public int CreditsMaxTime { get; set; }
-        public int ExamsMaxTime { get; set; }
-        public int CourseProjectsMaxTime { get; set; }
-        public int InterviewsMaxTime { get; set; }
-        public int TestsAndReferatsMaxTime { get; set; }
-        public int InternshipsMaxTime { get; set; }
-        public int DiplomasMaxTime { get; set; }
-        public int DiplomasReviewsMaxTime { get; set; }
-        public int SECMaxTime { get; set; }
-        public int GraduatesManagementMaxTime { get; set; }
-        public int GraduatesAcademicWorkMaxTime { get; set; }
-        public int PlasticPosesDemonstrationMaxTime { get; set; }
-        public int TestingEscortMaxTime { get; set; }
+        public int LectionsMaxTime { get; set; } = 0;
+        public int PracticalClassesMaxTime { get; set; } = 0;
+        public int LaboratoryClassesMaxTime { get; set; } = 0;
+        public int ConsultationsMaxTime { get; set; } = 0;
+        public int OtherTeachingClassesMaxTime { get; set; } = 0;
+        public int CreditsMaxTime { get; set; } = 0;
+        public int ExamsMaxTime { get; set; } = 0;
+        public int CourseProjectsMaxTime { get; set; } = 0;
+        public int InterviewsMaxTime { get; set; } = 0;
+        public int TestsAndReferatsMaxTime { get; set; } = 0;
+        public int InternshipsMaxTime { get; set; } = 0;
+        public int DiplomasMaxTime { get; set; } = 0;
+        public int DiplomasReviewsMaxTime { get; set; } = 0;
+        public int SECMaxTime { get; set; } = 0;
+        public int GraduatesManagementMaxTime { get; set; } = 0;
+        public int GraduatesAcademicWorkMaxTime { get; set; } = 0;
+        public int PlasticPosesDemonstrationMaxTime { get; set; } = 0;
+        public int TestingEscortMaxTime { get; set; } = 0;
 
         public int TimeSum =>
             TestingEscortMaxTime

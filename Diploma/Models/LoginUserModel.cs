@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Diploma.Models.Queries.Login
+namespace Diploma.Models
 {
     public class LoginUserModel
     {

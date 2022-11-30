@@ -6,10 +6,10 @@ namespace Database
 {
     public class AppDbContext : DbContext, IAppDBContext
     {
-        public virtual DbSet<User> Contracts { get; set; } = null!;
+        public virtual DbSet<Contract> Contracts { get; set; } = null!;
         public virtual DbSet<Role> Roles { get; set; } = null!;
         public virtual DbSet<User> Users { get; set; } = null!;
-        public virtual DbSet<Contract> MonthReports { get; set; } = null!;
+        public virtual DbSet<MonthReport> MonthReports { get; set; } = null!;
         public virtual DbSet<Department> Departments { get; set; } = null!;
 
         public AppDbContext()

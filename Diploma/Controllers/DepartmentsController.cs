@@ -29,7 +29,7 @@ namespace Diploma.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(string name)
         {
-            if (_departmentService.FindByName(name) != null)
+            if (await _departmentService.FindByName(name) != null)
             {
                 return BadRequest();
             }

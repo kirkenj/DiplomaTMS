@@ -1,0 +1,58 @@
+﻿@model Database.Entities.Contract;
+
+@{
+    ViewData["Title"] = "Create Contract";
+    _ = ViewData["List"] ?? throw new ArgumentNullException("List");
+    var dList = (List<SelectListItem>)ViewData["List"];
+
+}
+
+<h2>Create contract</h2>
+<form action="/Contracts/Create" method="post">
+
+    <div>@Html.HiddenFor(Model => Model.UserID)</div>
+    <div>@Html.LabelFor(Model => Model.Department)</div>
+    <div>@Html.DropDownListFor(m => m.DepartmentID, dList)</div>
+    <div>@Html.LabelFor(Model => Model.PeriodStart)</div>
+    <div>@Html.EditorFor(Model => Model.PeriodStart)</div>
+    <div>@Html.LabelFor(Model => Model.PeriodEnd)</div>
+    <div>@Html.EditorFor(Model => Model.PeriodEnd)</div>
+    <div>@Html.LabelFor(Model => Model.LectionsMaxTime)</div>
+    <div>@Html.TextBoxFor(Model => Model.LectionsMaxTime)</div>
+    <div>@Html.LabelFor(Model => Model.PracticalClassesMaxTime)</div>
+    <div>@Html.TextBoxFor(Model => Model.PracticalClassesMaxTime)</div>
+    <div>@Html.LabelFor(Model => Model.LaboratoryClassesMaxTime)</div>
+    <div>@Html.TextBoxFor(Model => Model.LaboratoryClassesMaxTime)</div>
+    <div>@Html.LabelFor(Model => Model.ConsultationsMaxTime)</div>
+    <div>@Html.TextBoxFor(Model => Model.ConsultationsMaxTime)</div>
+    <div>@Html.LabelFor(Model => Model.OtherTeachingClassesMaxTime)</div>
+    <div>@Html.TextBoxFor(Model => Model.OtherTeachingClassesMaxTime)</div>
+    <div>@Html.LabelFor(Model => Model.CreditsMaxTime)</div>
+    <div>@Html.TextBoxFor(Model => Model.CreditsMaxTime)</div>
+    <div>@Html.LabelFor(Model => Model.ExamsMaxTime)</div>
+    <div>@Html.TextBoxFor(Model => Model.ExamsMaxTime)</div>
+    <div>@Html.LabelFor(Model => Model.CourseProjectsMaxTime)</div>
+    <div>@Html.TextBoxFor(Model => Model.CourseProjectsMaxTime)</div>
+    <div>@Html.LabelFor(Model => Model.InterviewsMaxTime)</div>
+    <div>@Html.TextBoxFor(Model => Model.InterviewsMaxTime)</div>
+    <div>@Html.LabelFor(Model => Model.TestsAndReferatsMaxTime)</div>
+    <div>@Html.TextBoxFor(Model => Model.TestsAndReferatsMaxTime)</div>
+    <div>@Html.LabelFor(Model => Model.InternshipsMaxTime)</div>
+    <div>@Html.TextBoxFor(Model => Model.InternshipsMaxTime)</div>
+    <div>@Html.LabelFor(Model => Model.DiplomasMaxTime)</div>
+    <div>@Html.TextBoxFor(Model => Model.DiplomasMaxTime)</div>
+    <div>@Html.LabelFor(Model => Model.DiplomasReviewsMaxTime)</div>
+    <div>@Html.TextBoxFor(Model => Model.DiplomasReviewsMaxTime)</div>
+    <div>@Html.LabelFor(Model => Model.SECMaxTime)</div>
+    <div>@Html.TextBoxFor(Model => Model.SECMaxTime)</div>
+    <div>@Html.LabelFor(Model => Model.GraduatesManagementMaxTime)</div>
+    <div>@Html.TextBoxFor(Model => Model.GraduatesManagementMaxTime)</div>
+    <div>@Html.LabelFor(Model => Model.GraduatesAcademicWorkMaxTime)</div>
+    <div>@Html.TextBoxFor(Model => Model.GraduatesAcademicWorkMaxTime)</div>
+    <div>@Html.LabelFor(Model => Model.PlasticPosesDemonstrationMaxTime)</div>
+    <div>@Html.TextBoxFor(Model => Model.PlasticPosesDemonstrationMaxTime)</div>
+    <div>@Html.LabelFor(Model => Model.TestingEscortMaxTime)</div>
+    <div>@Html.TextBoxFor(Model => Model.TestingEscortMaxTime)</div>
+
+    <input type="submit" value="Create" />
+</form>

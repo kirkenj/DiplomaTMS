@@ -1,0 +1,15 @@
+﻿@{
+    int userRoleID = int.Parse(User.Claims.First(c => c.Type == "RoleID").Value);
+    bool isAdminView = userRoleID == 3 || userRoleID == 1;
+}
+
+<div>@Html.ActionLink("Show my contracts", "ShowUsersContracts")</div>
+<div>@Html.ActionLink("Create a contract", "Create", "Contracts")</div>
+@if (isAdminView)
+{
+    <div>@Html.ActionLink("Show Users Contracts", "AdminContractsPanel", "Contracts")</div>
+}
+
+
+
+

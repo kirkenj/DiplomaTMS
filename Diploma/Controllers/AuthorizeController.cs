@@ -1,11 +1,10 @@
-﻿using Diploma.Models.Comands.Register;
-using Diploma.Models.Interfaces;
-using Diploma.Models.Queries.Login;
+﻿using Diploma.Models.Interfaces;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
+using Diploma.Models;
 
 namespace Diploma.Controllers
 {
@@ -52,6 +51,14 @@ namespace Diploma.Controllers
         [HttpPost]
         public async Task<ActionResult> Register(RegisterUserModel registerModel)
         {
+            
+            var q = registerModel.Validate(new System.ComponentModel.DataAnnotations.ValidationContext(User));
+            if (q.Any()) 
+            {
+                throw new ArgumentException(string.Join("\n", q));
+            }
+
+
             var result = await _accountService.CreateAsync(registerModel);
             if (result.succed)
             {

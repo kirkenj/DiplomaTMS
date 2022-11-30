@@ -1,9 +1,7 @@
 ﻿using Database;
 using Database.Entities;
 using Database.Interfaces;
-using Diploma.Models.Comands.Register;
 using Diploma.Models.Interfaces;
-using Diploma.Models.Queries.Login;
 using Microsoft.EntityFrameworkCore;
 using NuGet.Protocol.Plugins;
 using System.Security.Cryptography;
@@ -48,12 +46,12 @@ namespace Diploma.Models.Services
 
         public async Task<User> GetUserByID(int id)
         {
-            return await _context.Users.Include(y => y.Role).FirstAsync(u => u.ID == id);
+            return await _context.Users.Include(y => y.Role).Include(y => y.Contracts).ThenInclude(c => c.Department).FirstAsync(u => u.ID == id);
         }
 
         public async Task<User> GetUserByLogin(string Login)
         {
-            return await _context.Users.Include(y => y.Role).FirstAsync(u => u.Login == Login);
+            return await _context.Users.Include(y => y.Role).Include(y=>y.Contracts).ThenInclude(c => c.Department).FirstAsync(u => u.Login == Login);
         }
 
         public List<UserViewModel> GetUserViewModelsList()
