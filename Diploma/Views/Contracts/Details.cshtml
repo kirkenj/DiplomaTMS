@@ -1,0 +1,65 @@
+﻿@using Database.Entities;
+@model Database.Entities.Contract
+@{
+    var monthReports = Model.MonthReports.ToList() ?? new List<MonthReport>();
+}
+
+<table>
+    <tr>
+        <td>edit</td>
+        <td>@Html.LabelFor(Model => Model.MonthReports.First().TimeSum)</td>
+        <td>@Html.LabelFor(Model => Model.MonthReports.First().Month)</td>
+        <td>@Html.LabelFor(Model => Model.MonthReports.First().Year)</td>
+        <td>@Html.LabelFor(Model => Model.MonthReports.First().ContractID)</td>
+        <td>@Html.LabelFor(Model => Model.MonthReports.First().LectionsTime)</td>
+        <td>@Html.LabelFor(Model => Model.MonthReports.First().PracticalClassesTime)</td>
+        <td>@Html.LabelFor(Model => Model.MonthReports.First().LaboratoryClassesTime)</td>
+        <td>@Html.LabelFor(Model => Model.MonthReports.First().ConsultationsTime)</td>
+        <td>@Html.LabelFor(Model => Model.MonthReports.First().OtherTeachingClassesTime)</td>
+        <td>@Html.LabelFor(Model => Model.MonthReports.First().CreditsTime)</td>
+        <td>@Html.LabelFor(Model => Model.MonthReports.First().ExamsTime)</td>
+        <td>@Html.LabelFor(Model => Model.MonthReports.First().CourseProjectsTime)</td>
+        <td>@Html.LabelFor(Model => Model.MonthReports.First().InterviewsTime)</td>
+        <td>@Html.LabelFor(Model => Model.MonthReports.First().TestsAndReferatsTime)</td>
+        <td>@Html.LabelFor(Model => Model.MonthReports.First().InternshipsTime)</td>
+        <td>@Html.LabelFor(Model => Model.MonthReports.First().DiplomasTime)</td>
+        <td>@Html.LabelFor(Model => Model.MonthReports.First().DiplomasReviewsTime)</td>
+        <td>@Html.LabelFor(Model => Model.MonthReports.First().SECTime)</td>
+        <td>@Html.LabelFor(Model => Model.MonthReports.First().GraduatesManagementTime)</td>
+        <td>@Html.LabelFor(Model => Model.MonthReports.First().GraduatesAcademicWorkTime)</td>
+        <td>@Html.LabelFor(Model => Model.MonthReports.First().PlasticPosesDemonstrationTime)</td>
+        <td>@Html.LabelFor(Model => Model.MonthReports.First().TestingEscortTime)</td>
+    </tr>
+
+    @{
+        for (int i = 0; i < monthReports.Count(); i++)
+        {
+            var m = monthReports[i];
+            <tr>
+                <td>@Html.ActionLink("Edit", "EditMonthReport", new {m.ContractID, m.Month, m.Year})</td>
+                <td>@m.TimeSum</td>
+                <td>@m.Month</td>
+                <td>@m.Year</td>
+                <td>@m.ContractID</td>
+                <td>@m.LectionsTime</td>
+                <td>@m.PracticalClassesTime</td>
+                <td>@m.LaboratoryClassesTime</td>
+                <td>@m.ConsultationsTime</td>
+                <td>@m.OtherTeachingClassesTime</td>
+                <td>@m.CreditsTime</td>
+                <td>@m.ExamsTime</td>
+                <td>@m.CourseProjectsTime</td>
+                <td>@m.InterviewsTime</td>
+                <td>@m.TestsAndReferatsTime</td>
+                <td>@m.InternshipsTime</td>
+                <td>@m.DiplomasTime</td>
+                <td>@m.DiplomasReviewsTime</td>
+                <td>@m.SECTime</td>
+                <td>@m.GraduatesManagementTime</td>
+                <td>@m.GraduatesAcademicWorkTime</td>
+                <td>@m.PlasticPosesDemonstrationTime</td>
+                <td>@m.TestingEscortTime</td>
+            </tr>
+        }
+    }
+</table>

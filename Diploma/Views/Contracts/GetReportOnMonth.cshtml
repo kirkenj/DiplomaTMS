@@ -1,0 +1,11 @@
+﻿@model DateTime;
+
+@{
+    ViewData["Title"] = "Get Report On Month";
+}
+
+<h2>Select date to get a report</h2>
+<form action="/Contracts/GetReportOnMonthView" method="post">
+    <input type="datetime-local" id="localdate" name="date"/>
+    <input type="submit" value="Show"/>
+</form>

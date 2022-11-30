@@ -1,9 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using static System.Collections.Specialized.BitVector32;
 
 namespace Database.Entities
 {
     [Table(nameof(Contract)+"s")]
-    public class Contract
+    public class Contract : IValidatableObject
     {
         public int ID { get; set; }
         public User User { get; set; } = null!;
@@ -52,5 +54,108 @@ namespace Database.Entities
             + CreditsMaxTime
             + ExamsMaxTime
             + CourseProjectsMaxTime;
+
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            if (PeriodStart < PeriodEnd)
+            {
+                yield return new ValidationResult($"PeriodStart < PeriodEnd");
+            }
+
+            if (TimeSum < 0)
+            {
+                yield return new ValidationResult($"{nameof(TimeSum)} < 0");
+            }
+
+            if (LectionsMaxTime < 0)
+            {
+                yield return new ValidationResult($"{nameof(LectionsMaxTime)} < 0");
+            }
+
+            if (PracticalClassesMaxTime < 0)
+            {
+                yield return new ValidationResult($"{nameof(PracticalClassesMaxTime)} < 0");
+            }
+
+            if (LaboratoryClassesMaxTime < 0)
+            {
+                yield return new ValidationResult($"{nameof(LaboratoryClassesMaxTime)} < 0");
+            }
+
+            if (ConsultationsMaxTime < 0)
+            {
+                yield return new ValidationResult($"{nameof(ConsultationsMaxTime)} < 0");
+            }
+
+            if (OtherTeachingClassesMaxTime < 0)
+            {
+                yield return new ValidationResult($"{nameof(OtherTeachingClassesMaxTime)} < 0");
+            }
+
+            if (CreditsMaxTime < 0)
+            {
+                yield return new ValidationResult($"{nameof(CreditsMaxTime)} < 0");
+            }
+
+            if (ExamsMaxTime < 0)
+            {
+                yield return new ValidationResult($"{nameof(ExamsMaxTime)} < 0");
+            }
+
+            if (CourseProjectsMaxTime < 0)
+            {
+                yield return new ValidationResult($"{nameof(CourseProjectsMaxTime)} < 0");
+            }
+
+            if (InterviewsMaxTime < 0)
+            {
+                yield return new ValidationResult($"{nameof(InterviewsMaxTime)} < 0");
+            }
+
+            if (TestsAndReferatsMaxTime < 0)
+            {
+                yield return new ValidationResult($"{nameof(TestsAndReferatsMaxTime)} < 0");
+            }
+
+            if (InternshipsMaxTime < 0)
+            {
+                yield return new ValidationResult($"{nameof(InternshipsMaxTime)} < 0");
+            }
+
+            if (DiplomasMaxTime < 0)
+            {
+                yield return new ValidationResult($"{nameof(DiplomasMaxTime)} < 0");
+            }
+
+            if (DiplomasReviewsMaxTime < 0)
+            {
+                yield return new ValidationResult($"{nameof(DiplomasReviewsMaxTime)} < 0");
+            }
+
+            if (SECMaxTime < 0)
+            {
+                yield return new ValidationResult($"{nameof(SECMaxTime)} < 0");
+            }
+
+            if (GraduatesManagementMaxTime < 0)
+            {
+                yield return new ValidationResult($"{nameof(GraduatesManagementMaxTime)} < 0");
+            }
+
+            if (GraduatesAcademicWorkMaxTime < 0)
+            {
+                yield return new ValidationResult($"{nameof(GraduatesAcademicWorkMaxTime)} < 0");
+            }
+
+            if (PlasticPosesDemonstrationMaxTime < 0)
+            {
+                yield return new ValidationResult($"{nameof(PlasticPosesDemonstrationMaxTime)} < 0");
+            }
+
+            if (TestingEscortMaxTime < 0)
+            {
+                yield return new ValidationResult($"{nameof(TestingEscortMaxTime)} < 0");
+            }
+        }
     }
 }

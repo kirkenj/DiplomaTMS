@@ -6,6 +6,7 @@
 
 <table>
     <tr>
+        <td>Go to details</td>
         <td>@Html.LabelFor(Model => Model.First().IsConfirmed)</td>
         <td>@Html.LabelFor(Model => Model.First().TimeSum)</td>
         <td>@Html.LabelFor(Model => Model.First().Department)</td>
@@ -36,6 +37,7 @@
         {
             var m = Model[i];
             <tr>
+            <td>@if (m.IsConfirmed) @Html.ActionLink("Details", "Details", new {contractID = m.ID})</td>
             <td>@m.IsConfirmed</td>
             <td>@m.TimeSum</td>
             <td>@m.Department.Name</td>

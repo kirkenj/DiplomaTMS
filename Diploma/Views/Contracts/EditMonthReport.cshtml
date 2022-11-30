@@ -1,0 +1,55 @@
+﻿@model Database.Entities.MonthReport;
+
+@{
+    ViewData["Title"] = "Edit Month report";
+}
+
+<h2>Create contract</h2>
+<form action="/Contracts/EditMonthReport" method="post">
+    <div>@Html.HiddenFor(Model => Model.ContractID)</div>
+    <div>@Html.HiddenFor(Model => Model.Year)</div>
+    <div>@Html.HiddenFor(Model => Model.Month)</div>
+    <div>@Html.LabelFor(Model => Model.ContractID)</div>
+    <div>@Html.DisplayTextFor(Model => Model.ContractID)</div>
+    <div>@Html.LabelFor(Model => Model.Year)</div>
+    <div>@Html.DisplayTextFor(Model => Model.Year)</div>
+    <div>@Html.LabelFor(Model => Model.Month)</div>
+    <div>@Html.DisplayTextFor(Model => Model.Month)</div>
+    <div>@Html.LabelFor(Model => Model.LectionsTime)</div>
+    <div>@Html.TextBoxFor(Model => Model.LectionsTime)</div>
+    <div>@Html.LabelFor(Model => Model.PracticalClassesTime)</div>
+    <div>@Html.TextBoxFor(Model => Model.PracticalClassesTime)</div>
+    <div>@Html.LabelFor(Model => Model.LaboratoryClassesTime)</div>
+    <div>@Html.TextBoxFor(Model => Model.LaboratoryClassesTime)</div>
+    <div>@Html.LabelFor(Model => Model.ConsultationsTime)</div>
+    <div>@Html.TextBoxFor(Model => Model.ConsultationsTime)</div>
+    <div>@Html.LabelFor(Model => Model.OtherTeachingClassesTime)</div>
+    <div>@Html.TextBoxFor(Model => Model.OtherTeachingClassesTime)</div>
+    <div>@Html.LabelFor(Model => Model.CreditsTime)</div>
+    <div>@Html.TextBoxFor(Model => Model.CreditsTime)</div>
+    <div>@Html.LabelFor(Model => Model.ExamsTime)</div>
+    <div>@Html.TextBoxFor(Model => Model.ExamsTime)</div>
+    <div>@Html.LabelFor(Model => Model.CourseProjectsTime)</div>
+    <div>@Html.TextBoxFor(Model => Model.CourseProjectsTime)</div>
+    <div>@Html.LabelFor(Model => Model.InterviewsTime)</div>
+    <div>@Html.TextBoxFor(Model => Model.InterviewsTime)</div>
+    <div>@Html.LabelFor(Model => Model.TestsAndReferatsTime)</div>
+    <div>@Html.TextBoxFor(Model => Model.TestsAndReferatsTime)</div>
+    <div>@Html.LabelFor(Model => Model.InternshipsTime)</div>
+    <div>@Html.TextBoxFor(Model => Model.InternshipsTime)</div>
+    <div>@Html.LabelFor(Model => Model.DiplomasTime)</div>
+    <div>@Html.TextBoxFor(Model => Model.DiplomasTime)</div>
+    <div>@Html.LabelFor(Model => Model.DiplomasReviewsTime)</div>
+    <div>@Html.TextBoxFor(Model => Model.DiplomasReviewsTime)</div>
+    <div>@Html.LabelFor(Model => Model.SECTime)</div>
+    <div>@Html.TextBoxFor(Model => Model.SECTime)</div>
+    <div>@Html.LabelFor(Model => Model.GraduatesManagementTime)</div>
+    <div>@Html.TextBoxFor(Model => Model.GraduatesManagementTime)</div>
+    <div>@Html.LabelFor(Model => Model.GraduatesAcademicWorkTime)</div>
+    <div>@Html.TextBoxFor(Model => Model.GraduatesAcademicWorkTime)</div>
+    <div>@Html.LabelFor(Model => Model.PlasticPosesDemonstrationTime)</div>
+    <div>@Html.TextBoxFor(Model => Model.PlasticPosesDemonstrationTime)</div>
+    <div>@Html.LabelFor(Model => Model.TestingEscortTime)</div>
+    <div>@Html.TextBoxFor(Model => Model.TestingEscortTime)</div>
+    <input type="submit" value="Edit" />
+</form>

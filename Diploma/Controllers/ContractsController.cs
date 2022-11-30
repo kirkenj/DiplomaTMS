@@ -12,12 +12,14 @@ namespace Diploma.Controllers
         readonly IDepartmentService _departmentService;
         readonly IAccountService _accountService;
         readonly IContractService _contractService;
+        readonly IMonthReportService _monthReportService;
 
-        public ContractsController(IDepartmentService departmentService, IAccountService accountService, IContractService contractService)
+        public ContractsController(IDepartmentService departmentService, IAccountService accountService, IContractService contractService, IMonthReportService monthReportService)
         {
             _departmentService = departmentService;
             _accountService = accountService;
             _contractService = contractService;
+            _monthReportService = monthReportService;
         }
 
         public IActionResult Index()
@@ -61,8 +63,65 @@ namespace Diploma.Controllers
         [Authorize("OnlyAdmin")]
         public async Task<IActionResult> Confirm(int contractID)
         {
-            await _contractService.ConfirmContract(contractID);
+            var contract = await _contractService.GetById(contractID);
+            if (contract == null) 
+            {
+                return BadRequest(); 
+            }
+            await _contractService.ConfirmContract(contract);
             return RedirectToAction("AdminContractsPanel");
+        }
+
+
+        [Authorize]
+        public async Task<IActionResult> Details(int contractID)
+        {
+            var contract = await _contractService.GetById(contractID);
+            if (contract == null)
+            {
+                return BadRequest();
+            }
+
+            return View(contract);
+        }
+
+        [Authorize]
+        public async Task<IActionResult> EditMonthReport(int contractID, int month, int year)
+        {
+            var contract = await _contractService.GetById(contractID);
+            if (contract is null)
+            {
+                return NotFound(contractID);
+            }
+            var report = contract.MonthReports.FirstOrDefault(r => r.Month == month && r.Year == year);
+            if (report is null)
+            {
+                return NotFound(report);
+            }
+
+            return View(report);
+        }
+
+        [Authorize]
+        [HttpPost]
+        public async Task<IActionResult> EditMonthReport(MonthReport monthReport)
+        {
+            await _contractService.UpdateMonthReport(monthReport);
+            return RedirectToAction("Details", new { contractID = monthReport.ContractID });
+        }
+
+        [Authorize("OnlyAdmin")]
+        public IActionResult GetReportOnMonth()
+        {
+            return View();
+        }
+
+        [Authorize("OnlyAdmin")]
+        [HttpPost]
+        public async Task<IActionResult> GetReportOnMonthView(DateTime date)
+        {
+            var res = await _monthReportService.GetMonthReportAsyncOnDate(date);
+            return View("GetReportOnMonthView", res);
         }
     }
 }

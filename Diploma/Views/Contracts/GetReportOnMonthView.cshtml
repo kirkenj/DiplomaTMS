@@ -1,0 +1,64 @@
+﻿@using Database.Entities;
+@model List<MonthReport>
+
+<table>
+    <tr>
+        <td>@Html.LabelFor(Model => Model.First().ContractID)</td>
+        <td>@Html.LabelFor(Model => Model.First().Contract.User.Login)</td>
+        <td>@Html.LabelFor(Model => Model.First().TimeSum)</td>
+        <td>@Html.LabelFor(Model => Model.First().Month)</td>
+        <td>@Html.LabelFor(Model => Model.First().Year)</td>
+        <td>@Html.LabelFor(Model => Model.First().ContractID)</td>
+        <td>@Html.LabelFor(Model => Model.First().LectionsTime)</td>
+        <td>@Html.LabelFor(Model => Model.First().PracticalClassesTime)</td>
+        <td>@Html.LabelFor(Model => Model.First().LaboratoryClassesTime)</td>
+        <td>@Html.LabelFor(Model => Model.First().ConsultationsTime)</td>
+        <td>@Html.LabelFor(Model => Model.First().OtherTeachingClassesTime)</td>
+        <td>@Html.LabelFor(Model => Model.First().CreditsTime)</td>
+        <td>@Html.LabelFor(Model => Model.First().ExamsTime)</td>
+        <td>@Html.LabelFor(Model => Model.First().CourseProjectsTime)</td>
+        <td>@Html.LabelFor(Model => Model.First().InterviewsTime)</td>
+        <td>@Html.LabelFor(Model => Model.First().TestsAndReferatsTime)</td>
+        <td>@Html.LabelFor(Model => Model.First().InternshipsTime)</td>
+        <td>@Html.LabelFor(Model => Model.First().DiplomasTime)</td>
+        <td>@Html.LabelFor(Model => Model.First().DiplomasReviewsTime)</td>
+        <td>@Html.LabelFor(Model => Model.First().SECTime)</td>
+        <td>@Html.LabelFor(Model => Model.First().GraduatesManagementTime)</td>
+        <td>@Html.LabelFor(Model => Model.First().GraduatesAcademicWorkTime)</td>
+        <td>@Html.LabelFor(Model => Model.First().PlasticPosesDemonstrationTime)</td>
+        <td>@Html.LabelFor(Model => Model.First().TestingEscortTime)</td>
+    </tr>
+
+    @{
+        for (int i = 0; i < Model.Count(); i++)
+        {
+            var m = Model[i];
+            <tr>
+                <td>@m.ContractID</td>
+                <td>@m.Contract.User.Login</td>
+                <td>@m.TimeSum</td>
+                <td>@m.Month</td>
+                <td>@m.Year</td>
+                <td>@m.ContractID</td>
+                <td>@m.LectionsTime</td>
+                <td>@m.PracticalClassesTime</td>
+                <td>@m.LaboratoryClassesTime</td>
+                <td>@m.ConsultationsTime</td>
+                <td>@m.OtherTeachingClassesTime</td>
+                <td>@m.CreditsTime</td>
+                <td>@m.ExamsTime</td>
+                <td>@m.CourseProjectsTime</td>
+                <td>@m.InterviewsTime</td>
+                <td>@m.TestsAndReferatsTime</td>
+                <td>@m.InternshipsTime</td>
+                <td>@m.DiplomasTime</td>
+                <td>@m.DiplomasReviewsTime</td>
+                <td>@m.SECTime</td>
+                <td>@m.GraduatesManagementTime</td>
+                <td>@m.GraduatesAcademicWorkTime</td>
+                <td>@m.PlasticPosesDemonstrationTime</td>
+                <td>@m.TestingEscortTime</td>
+            </tr>
+        }
+    }
+</table>
