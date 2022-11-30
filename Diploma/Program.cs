@@ -1,7 +1,5 @@
 using Database;
-using Database.Entities;
 using Database.Interfaces;
-using Diploma.Models;
 using Diploma.Models.Interfaces;
 using Diploma.Models.Middlewares;
 using Diploma.Models.Services;
@@ -19,7 +17,9 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
 builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("OnlyAdmin", policy =>
-    policy.RequireClaim("RoleID", new[] { "1" }));
+    policy.RequireClaim("RoleID", new[] { "1", "3" }));
+    options.AddPolicy("OnlySuperAdmin", policy =>
+    policy.RequireClaim("RoleID", new[] { "3" }));
 });
 
 builder.Services.AddControllersWithViews();

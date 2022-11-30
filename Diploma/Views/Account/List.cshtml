@@ -1,8 +1,10 @@
 ﻿@using Diploma.Models
+@using System.Security.Claims;
 @model List<UserViewModel> 
 
 @{
     ViewData["Title"] = "Accounts list";
+    int userRoleID = int.Parse(User.Claims.First(c => c.Type == "RoleID").Value);
 }
 <table>
     <tr>
@@ -12,6 +14,10 @@
         <th>@Html.LabelFor(model=>model.First().Name)</th>
         <th>@Html.LabelFor(model=>model.First().Surname)</th>
         <th>@Html.LabelFor(model=>model.First().Patronymic)</th>
+        @if (User.Claims.Any(r => r.Type == "RoleID" && r.Value == "3"))
+        {
+            <th>Set Role</th>
+        }
     </tr>
     @{
         var list = Model.ToArray();
@@ -26,6 +32,17 @@
             <td>@m.Name</td>
             <td>@m.Surname</td>
             <td>@m.Patronymic</td>
+            @if (userRoleID != 3 || m.RoleId == 3) continue;
+            <td>@if (m.RoleId == 2)
+                {
+                    @Html.ActionLink("Set Admin role", "SetRole", "Account", new { RoleID = 1, UserID = m.ID }, null);
+                }
+                else
+                {
+                    @Html.ActionLink("Set User role", "SetRole", "Account", new { RoleID = 2, UserID = m.ID }, null);
+                }
+            </td>
+            
         </tr>
     }
 </table>

@@ -10,6 +10,7 @@ namespace Database
         public virtual DbSet<Role> Roles { get; set; } = null!;
         public virtual DbSet<User> Users { get; set; } = null!;
         public virtual DbSet<Contract> MonthReports { get; set; } = null!;
+        public virtual DbSet<Department> Departments { get; set; } = null!;
 
         public AppDbContext()
         {
@@ -30,6 +31,13 @@ namespace Database
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Role>(entity =>
+            {
+                entity.Property(x => x.ID).HasColumnName("ID").UseIdentityColumn();
+                entity.Property(e => e.Name).HasColumnName("Name");
+                entity.HasIndex(e => e.Name).IsUnique();
+            });
+
+            modelBuilder.Entity<Department>(entity =>
             {
                 entity.Property(x => x.ID).HasColumnName("ID").UseIdentityColumn();
                 entity.Property(e => e.Name).HasColumnName("Name");
@@ -64,7 +72,12 @@ namespace Database
                 .WithMany(u => u.Contracts)
                 .HasForeignKey(u => u.UserID)
                 .OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("FK_Contracts_Users");
+                .HasConstraintName("FK_Contracts_Users"); 
+                entity.HasOne(e => e.Department)
+                .WithMany(u => u.Contracts)
+                .HasForeignKey(u => u.DepartmentID)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FK_Contracts_Departments");
                 entity.Property(e => e.LectionsMaxTime).HasColumnName("LectionsMaxTime");
                 entity.Property(e => e.PracticalClassesMaxTime).HasColumnName("PracticalClassesMaxTime");
                 entity.Property(e => e.LaboratoryClassesMaxTime).HasColumnName("LaboratoryClassesMaxTime");

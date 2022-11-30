@@ -31,13 +31,10 @@ namespace Diploma.Controllers
         }
 
         [Authorize("OnlyAdmin")]
-        [HttpPost]
         public async Task<IActionResult> SetRole(int userId, int RoleID)
         { 
-            var roleTask = _appDBContext.Roles.FirstOrDefaultAsync(r => r.ID == RoleID);
-            var userTask = _appDBContext.Users.FirstOrDefaultAsync(r => r.ID == userId);
-            var role = roleTask.Result;
-            var user = userTask.Result;
+            var role = await _appDBContext.Roles.FirstOrDefaultAsync(r => r.ID == RoleID);
+            var user = await _appDBContext.Users.FirstOrDefaultAsync(r => r.ID == userId);
             if (role != null && user!=null) 
             {
                 user.RoleId= role.ID;

@@ -8,6 +8,8 @@ namespace Database.Entities
         public int ID { get; set; }
         public User User { get; set; } = null!;
         public int UserID { get; set; }
+        public int DepartmentID { get; set; }
+        public Department Department { get; set; } = null!;
         public DateTime PeriodStart { get; set; }
         public DateTime PeriodEnd { get; set; }
         public bool IsConfirmed { get; set; } = false;

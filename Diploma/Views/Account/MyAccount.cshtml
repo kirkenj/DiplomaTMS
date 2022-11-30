@@ -32,7 +32,7 @@
 </table>
 
 @{
-    if (Model.RoleId == 1)
+    if (Model.RoleId == 1 || Model.RoleId == 3)
     {
         @Html.ActionLink("View all users", "List")
     }

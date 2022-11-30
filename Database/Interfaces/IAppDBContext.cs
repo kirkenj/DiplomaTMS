@@ -9,6 +9,7 @@ namespace Database.Interfaces
         DbSet<Role> Roles { get; }
         DbSet<User> Users { get; }
         DbSet<Contract> MonthReports { get; }
+        DbSet<Department> Departments { get; }
 
         public Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
     }
