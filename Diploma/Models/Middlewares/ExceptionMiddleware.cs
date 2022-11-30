@@ -16,9 +16,9 @@ namespace Diploma.Models.Middlewares
 
         public async Task InvokeAsync(HttpContext context)
         {
+                await _next(context);
             try
             {
-                await _next(context);
             }
             catch (Exception ex)
             {

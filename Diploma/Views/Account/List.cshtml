@@ -1,0 +1,32 @@
+﻿@using Diploma.Models
+@model List<UserViewModel> 
+
+@{
+    ViewData["Title"] = "Accounts list";
+}
+<table>
+    <tr>
+        <th>@Html.LabelFor(model=>model.First().ID)</th>
+        <th>@Html.LabelFor(model=>model.First().Login)</th>
+        <th>@Html.LabelFor(model=>model.First().RoleName)</th>
+        <th>@Html.LabelFor(model=>model.First().Name)</th>
+        <th>@Html.LabelFor(model=>model.First().Surname)</th>
+        <th>@Html.LabelFor(model=>model.First().Patronymic)</th>
+    </tr>
+    @{
+        var list = Model.ToArray();
+    }
+    @for (int i = 0; i < list.Length; i++)
+    { 
+        var m = list[i];
+        <tr>
+            <td>@m.ID</td>
+            <td>@m.Login</td>
+            <td>@m.RoleName</td>
+            <td>@m.Name</td>
+            <td>@m.Surname</td>
+            <td>@m.Patronymic</td>
+        </tr>
+    }
+</table>
+

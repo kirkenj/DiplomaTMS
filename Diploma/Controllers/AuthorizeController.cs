@@ -1,20 +1,11 @@
-﻿using Database.Entities;
-using Diploma.Models;
-using Diploma.Models.Comands.Register;
-using Diploma.Models.Constants;
+﻿using Diploma.Models.Comands.Register;
 using Diploma.Models.Interfaces;
 using Diploma.Models.Queries.Login;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Primitives;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
-using System.Security.Claims;
 
 namespace Diploma.Controllers
 {
@@ -27,7 +18,6 @@ namespace Diploma.Controllers
             _accountService = accountService;
         }
 
-
         [HttpGet("Login")]
         public ActionResult Login()
         {
@@ -37,16 +27,16 @@ namespace Diploma.Controllers
         [HttpPost]
         public async Task<ActionResult> Login(LoginUserModel loginModel)
         {
-            var result = await _accountService.TrySignInAsync(loginModel);
-            if (!result.succed)
+            var result = await _accountService.SignInAsync(loginModel);
+            if (result == null)
             {
 
                 ViewBag.Message = "Invalid login or password";
                 return View();
             }
 
-            var claims = new List<Claim> { new Claim(ClaimTypes.Name, result.userLogin) };
-            ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims, "Cookies");
+            var claims = new List<Claim> { new Claim(ClaimTypes.Name, result.Login), new Claim(ClaimTypes.Role, result.RoleName), new Claim(type:"RoleID", value: result.RoleId.ToString()) };
+            ClaimsIdentity claimsIdentity = new(claims, "Cookies");
             await Request.HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
             return RedirectToAction("Index", "Home");
         }
@@ -62,7 +52,7 @@ namespace Diploma.Controllers
         [HttpPost]
         public async Task<ActionResult> Register(RegisterUserModel registerModel)
         {
-            var result = await _accountService.TryCreateAsync(registerModel);
+            var result = await _accountService.CreateAsync(registerModel);
             if (result.succed)
             {
                 return RedirectToAction("Login");
@@ -70,8 +60,6 @@ namespace Diploma.Controllers
             else
             {
                 ViewBag.Message = result.explanation;
-                registerModel.PasswordStr= string.Empty;
-                registerModel.ConfirmPasswordStr= string.Empty;
                 return View(registerModel);
             }
         }
@@ -80,10 +68,8 @@ namespace Diploma.Controllers
         [Authorize]
         public ActionResult Logout()
         {
-            StringValues strings = new();
-            strings.Append("Bearer");
-            Response.Headers.Authorization = strings;
-            return Redirect("Home");
+            Request.HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToAction("Login");
         }
     }
 }

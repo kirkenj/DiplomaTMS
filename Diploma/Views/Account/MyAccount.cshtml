@@ -1,0 +1,40 @@
+﻿@model Diploma.Models.UserViewModel 
+
+@{
+    ViewData["Title"] = "Account";
+}
+<table>
+    <tr>
+        <td>@Html.LabelFor(model=>model.ID)</td>
+        <td>@Html.DisplayTextFor(model=>model.ID)</td>
+    </tr>
+
+    <tr>
+        <td>@Html.LabelFor(model=>model.Login)</td>
+        <td>@Html.DisplayTextFor(model=>model.Login)</td>
+    </tr>
+    <tr>
+        <td>@Html.LabelFor(model=>model.RoleName)</td>
+        <td>@Html.DisplayTextFor(model=>model.RoleName)</td>
+    </tr>
+    <tr>
+        <td>@Html.LabelFor(model=>model.Name)</td>
+        <td>@Html.DisplayTextFor(model=>model.Name)</td>
+    </tr>
+    <tr>
+        <td>@Html.LabelFor(model=>model.Surname)</td>
+        <td>@Html.DisplayTextFor(model=>model.Surname)</td>
+    </tr>
+    <tr>
+        <td>@Html.LabelFor(model=>model.Patronymic)</td>
+        <td>@Html.DisplayTextFor(model=>model.Patronymic)</td>
+    </tr>
+</table>
+
+@{
+    if (Model.RoleId == 1)
+    {
+        @Html.ActionLink("View all users", "List")
+    }
+}
+

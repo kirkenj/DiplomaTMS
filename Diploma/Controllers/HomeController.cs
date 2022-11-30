@@ -1,6 +1,4 @@
 ﻿using Diploma.Models;
-using Diploma.Models.Comands.Register;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -8,19 +6,7 @@ namespace Diploma.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
-        }
-
         public IActionResult Index()
-        {
-            return View();
-        }
-
-        public IActionResult Privacy()
         {
             return View();
         }
@@ -30,11 +16,5 @@ namespace Diploma.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-
-
-
-        // GET: AuthorizeControlle
-
-        
     }
 }

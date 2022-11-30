@@ -23,17 +23,26 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="HomeCopy" asp-action="Index">Home</a>
+                            @{
+                                var accControllerName = nameof(Diploma.Controllers.AccountController).Replace("Controller", string.Empty);
+                            }
+                            <a class="nav-link text-dark" asp-area="" asp-controller=@accControllerName asp-action="MyAccount">@accControllerName</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Authorize" asp-action="Register">Register</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Authorize" asp-action="Login">Login</a>
-                        </li>
+                        @{
+                            if (User is null || User.Identity is null || !User.Identity.IsAuthenticated)
+                            {
+                                <li align="right" class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Authorize" asp-action="Login">Login</a>
+                                </li>
+                            }
+                            else
+                            {
+                                           
+                                <li align = "right" class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Authorize" asp-action="Logout">Logout</a>
+                                </li>
+                            }
+                        }
                     </ul>
                 </div>
             </div>
